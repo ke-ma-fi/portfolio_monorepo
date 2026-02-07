@@ -1,0 +1,3 @@
+I would characterize the audio aura by looking at the average values of energy, valence and danceability. I would assume taht the highest score out of this three is dominating the aura of this person. For exaymple if the highest score would be dancability, I would say that the person prefers dance music the most.
+
+Its not the best method, beacause we only account for the top 100 Songs. Furthermore its very difficult to rate songs mood very percicely with just three indicators. The mood of songs is very complex and depents on more things like we accounted for. I think we could improve by taking more songs in account, corred our rating by repeted listening and take thomething like genres in account as well.

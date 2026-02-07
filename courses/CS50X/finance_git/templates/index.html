@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+<h1> Welcome, {{ user.username }}!</h1>
+<h3>Cash Value: {{ user.cash | usd }}</h3>
+<h3>Stocks Value: {{ total_sum | usd }}</h3>
+<h3>Total Value: {{ (user.cash + total_sum) | usd }}</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">
+                    stock
+                </th>
+                <th scope="col">
+                    shares
+                </th>
+                <th scope="col">
+                    current price
+                </th>
+                <th scope="col">
+                    total value
+                </th>
+            </tr>
+        </thead>
+        {% for stock in stocks %}
+        <tr>
+            <td>
+                {{ stock.symbol }}
+            </td>
+            <td>
+                {{ stock.shares }}
+            </td>
+            <td>
+                {{ stock.price | usd }}
+            </td>
+            <td>
+                {{ stock.total | usd }}
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td>
+
+            </td>
+            <td>
+
+            </td>
+            <td>
+
+            </td>
+            <td>
+                {{ total_sum | usd }}
+            </td>
+        </tr>
+    </table>
+{% endblock %}

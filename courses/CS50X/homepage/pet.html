@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <title>John Miller</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="Images/api.png">
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-success">
+            <div class="container-fluid">
+              <img src="Images/api.png" style="margin: 0 10px" alt="JM_icon">
+              <a class="navbar-brand" href="index.html" style="color: #ffffff">This is John Miller</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="index.html" style="color: #ffffff">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="cv.html" style="color: #ffffff">About Me</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="pet.html" style="color: #ffffff">Spencer</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="hobbies.html" style="color: #ffffff">Gallery</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <h3 style="margin: 15px 0"> Hi there, I'm Spencer, Wuff!</h3>
+          <p>Lokk at my pictures and guess how old I am! If you guessed right I'll show you a very special picture of me! <br>
+          Wuff! Try it out!</p>
+          <p class="form-label">Guess Spencers Age:</p>
+          <div class="flex-box">
+            <input id="I1" type="number" class="form-control" style="max-width: 40%">
+            <button type="submit" id="B1" class="btn btn-success" onclick="check_age()" >Submit</button>
+            <p id="A1"></p>
+          </div>
+          <img id="special" class="shadow p-3 bg-body-tertiary rounded" alt="sepcial pic" src="#">
+          <div class="side-grid2">
+            <div class="shadow p-3 bg-body-tertiary rounded dx"><img src="https://images.pexels.com/photos/4725943/pexels-photo-4725943.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="dog1" class="dogs"></div>
+            <div class="shadow p-3 bg-body-tertiary rounded dx"><img src="https://images.pexels.com/photos/4766369/pexels-photo-4766369.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="dog2" class="dogs"></div>
+          </div>
+          <div class="side-grid2">
+            <div class="shadow p-3 bg-body-tertiary rounded dx"><img src="https://images.pexels.com/photos/4783418/pexels-photo-4783418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="dog3" class="dogs"></div>
+            <div class="shadow p-3 bg-body-tertiary rounded dx"><img src="https://images.pexels.com/photos/5268300/pexels-photo-5268300.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="dog4" class="dogs"></div>
+          </div>
+          <div class="side-grid2">
+            <div class="shadow p-3 bg-body-tertiary rounded dx"><img src="https://images.pexels.com/photos/7932716/pexels-photo-7932716.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="dog5" class="dogs"></div>
+            <div class="shadow p-3 bg-body-tertiary rounded dx"><img src="https://images.pexels.com/photos/7932585/pexels-photo-7932585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="dog6" class="dogs"></div>
+          </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="scripts.js"></script>
+    </body>
+</html>

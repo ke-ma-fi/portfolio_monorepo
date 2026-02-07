@@ -1,0 +1,44 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    {% if category == 'overview'%}
+        <h2>Select Category</h2>
+        {% for cat in categories %}
+            <a href="{% url 'categories' cat %}"><h4>{{ cat }}</h4></a>
+        {% endfor %}
+    {% else %}
+        <h2>{{ category }}</h2>
+        {% for listing in listings %}
+        <a href="{% url 'detailview' listing_id=listing.id %}">
+            <div class="index-listing">
+                <h4 class="index-listing-h4">{{ listing.title }}</h4>
+                {% if listing.image %}
+                <img class="index-listing-img" src="{{ listing.image }}">
+                {% endif %}
+                Price: {{ listing.formatted_price }} <br>
+                Seller: {{ listing.seller }}
+                    <div class="index-listing-innerdiv">
+                        {{ listing.description }}
+                    </div>
+            </div>
+        </a>
+        {% endfor %}
+    {% endif %}
+   
+    {% for listing in active_listings %}
+    <a href="{% url 'detailview' listing_id=listing.id %}">
+        <div class="index-listing">
+            <h4 class="index-listing-h4">{{ listing.id }}: {{ listing.title }}</h4>
+            {% if listing.image %}
+            <img class="index-listing-img" src="{{ listing.image }}">
+            {% endif %}
+            Price: {{ listing.formatted_price }} <br>
+            Seller: {{ listing.seller }}
+                <div class="index-listing-innerdiv">
+                    {{ listing.description }}
+                </div>
+        </div>
+    </a>
+    {% endfor %}
+    
+{% endblock %}

@@ -1,0 +1,28 @@
+HTML tags:
+<nav>
+<div>
+<img>
+<a>
+<span>
+<ul>
+<li>
+<p>
+<tr>
+<td>
+and many more like <blockquote>, <figure> ...
+
+CSS properties:
+display
+justify-content
+align-items
+background-image
+position
+height
+width
+background-size
+background-position
+margin
+and many more...
+
+I used bootstrap primarily to implement my nav-bar and some responsive design features.
+I used javascrip to implement some additional changes in the behavior of the nav-bar and to create a little game that the user can play with Spencer to see some additional content.

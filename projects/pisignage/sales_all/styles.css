@@ -1,0 +1,82 @@
+body {
+    width: 1920px;
+    height: 1080px;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+#bg {
+    width: 100%;
+    height: 100%;
+    background-image: url('sales_all.png');
+}
+
+#end {
+    text-align: center;
+    height: 100px;
+    width: 500px;
+    position: absolute;
+    left: 1350px;
+    top: 45px;
+}
+
+#main {
+    height: 750px;
+    width: 600px;
+    position: absolute;
+    left: 250px;
+    top: 200px;
+}
+
+#suff {
+    overflow: hidden;
+    position: absolute;
+    width: 650px;
+    height: 750px;
+    left: 850px;
+    top: 200px;
+}
+
+#price {
+    background-color: gray;
+    height: 750px;
+    width: 200px;
+    position: absolute;
+    left: 1520px;
+    top: 210px;
+}
+
+h1 {
+    color: black;
+    font-size: 90px;
+    margin-top: 2px;
+}
+
+h2 {
+    color: red;
+    font-size: 40px;
+    margin-bottom: 45px;
+    -webkit-text-stroke: 1px white;
+}
+
+h3 {
+    color: red;
+    text-align: center;
+    margin-bottom: 57px;
+    font-size: 30px;
+    -webkit-text-stroke: 1px white;
+}
+
+h4 {
+    color: red;
+    text-align: right;
+    margin-bottom: 57px;
+    font-size: 30px;
+    -webkit-text-stroke: 1px white;
+}
+
+
+
+
+

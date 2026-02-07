@@ -1,0 +1,6 @@
+/archive
+.env
+.DS_Store
+*.zip
+**/Menuplan.json
+**/Sales.json

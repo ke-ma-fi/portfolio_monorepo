@@ -1,0 +1,52 @@
+# Environments
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Sensitive Data
+*.pdf
+config.json
+secrets.json
+credentials.json
+*.p12
+*.pem
+*.key
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+venv/
+env/
+.venv/
+__pycache__/
+*.py[cod]
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Build Artifacts
+build/
+dist/
+.next/
+.vercel/
+coverage/
+.docusaurus/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project Specific
+scripts_and_automation/kasse/cws_import/*.pdf

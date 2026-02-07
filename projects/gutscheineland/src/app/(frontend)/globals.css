@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: unset;
+    font-weight: unset;
+    font-family: var(--font-nunito);
+  }
+
+  :root {
+    --header-height: 5rem;
+
+    /* Off-White #F8F8F8 */
+    --background: 0 0% 97%;
+    
+    /* Black #1A1A1A */
+    --foreground: 0 0% 10%;
+
+    /* White #FFFFFF */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    /* White */
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    /* Brand Red #E01035 (Heart Color) */
+    --primary: 349 87% 47%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Vibrant Purple #8C30F5 */
+    --secondary: 268 91% 57%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Light Gray #E5E5E5 */
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 40%;
+
+    /* Hot Pink #FF2EC5 (Accent) or Light Gray for UI hovers */
+    --accent: 0 0% 90%;
+    --accent-foreground: 0 0% 10%;
+
+    /* Brand Red #E01035 */
+    --destructive: 349 87% 47%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 349 87% 47%;
+    
+    --radius: 0.5rem;
+    
+    --success: 142 76% 36%; /* Standard Green */
+    --warning: 25 100% 50%; /* Orange */
+    --error: 349 87% 47%; /* Brand Red */
+  }
+
+  /* Explicit Light Theme block to match :root and ensure specificity */
+  [data-theme='light'] {
+    --background: 0 0% 97%;
+    --foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 349 87% 47%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 268 91% 57%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 0 0% 90%;
+    --accent-foreground: 0 0% 10%;
+    --destructive: 349 87% 47%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 349 87% 47%;
+    --success: 142 76% 36%;
+    --warning: 25 100% 50%;
+    --error: 349 87% 47%;
+  }
+
+  [data-theme='dark'] {
+    /* Black #1A1A1A */
+    --background: 0 0% 10%;
+    /* White #FFFFFF */
+    --foreground: 0 0% 100%;
+
+    /* Dark Gray #2A2A2A */
+    --card: 0 0% 13%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 13%;
+    --popover-foreground: 0 0% 100%;
+
+    /* Brand Red (Heart) */
+    --primary: 349 87% 47%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Purple */
+    --secondary: 268 91% 57%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 0 0% 20%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 349 87% 47%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 349 87% 47%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground min-h-[100vh] flex flex-col font-sans;
+  }
+}
+
+html {
+  opacity: 0;
+}
+
+html[data-theme='dark'],
+html[data-theme='light'] {
+  opacity: initial;
+}

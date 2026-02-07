@@ -1,0 +1,49 @@
+body {
+    width: 1920px;
+    height: 1080px;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+#bg {
+    width: 100%;
+    height: 100%;
+    background-image: url('sales_bbq.png');
+}
+
+#content {
+    height: 700px;
+    width: 1430px;
+    position: absolute;
+    left: 70px;
+    top: 350px;
+}
+
+h1 {
+    color: white;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke: 5px black;
+    font-size: 75px;
+    margin-top: 0;
+    margin-bottom: 2px;
+}
+
+h2 {
+    color: white;
+    font-size: 50px;
+    margin-top: 0;
+    margin-bottom: 2px;
+}
+
+.price{
+    text-align: right;
+    margin-bottom: 20px !important;
+}
+
+
+
+
+
+
+

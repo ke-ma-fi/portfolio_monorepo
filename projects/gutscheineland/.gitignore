@@ -1,0 +1,20 @@
+build
+dist 
+node_modules
+.DS_Store
+.env
+.next
+.vercel
+
+# Certificates (Secure)
+certs/
+*.p12
+*.pem
+
+# Payload default media upload directory
+public/media/*
+!public/media/.gitkeep
+
+public/robots.txt
+public/sitemap*.xml
+package-lock.json

@@ -1,0 +1,197 @@
+html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    width: 80%;
+}
+
+.nav-co {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-item {
+    margin: 5px 30px;
+}
+
+.nav-link {
+    color: #ffffff;
+}
+
+.frame {
+    overflow: hidden !important;
+    height: 600px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle-frame {
+    overflow: hidden !important;
+    height: 200px !important;
+    width: 200px !important;
+    border-radius:50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 50px;
+}
+
+.croped {
+    height: 1200px !important;
+    width: 1800px !important;
+}
+
+.croped-small {
+    height: 250px !important;
+    width: 450px !important;
+}
+
+.card {
+    max-width: 1200px !important;
+    margin: 50px 10px !important;
+}
+
+.il {
+    display: inline;
+}
+
+.active {
+    color: #c9c9c9 !important;
+    font-weight: bold !important;
+}
+
+.ul-none {
+    list-style-type: none;
+}
+
+.side-grid1 {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.side-grid2 {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+@media screen and (max-width: 1500px) {
+    .side-grid2 {
+        flex-direction: column;
+    }
+}
+
+#d1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://images.pexels.com/photos/5268304/pexels-photo-5268304.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load');
+    position: relative;
+    height: 400px;
+    width: 1000px;
+    background-size: cover;
+    background-position: center;
+    margin: 10px 10px;
+}
+
+@media screen and (max-width: 1500px) {
+    #d1 {
+        width: 97.5%;
+    }
+}
+
+#d2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://images.pexels.com/photos/94015/pexels-photo-94015.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    position: relative;
+    height: 400px;
+    width: 1000px;
+    background-size: cover;
+    background-position: center;
+    margin: 10px 10px;
+}
+
+@media screen and (max-width: 1500px) {
+    #d2 {
+        width: 97.5%;
+    }
+}
+
+#d3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://images.pexels.com/photos/42157/pexels-photo-42157.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    position: relative;
+    height: 400px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    margin: 10px 10px;
+}
+@media screen and (max-width: 1500px) {
+    #d3 {
+        width: 100%;
+    }
+}
+
+.txt-over {
+    color: #ffffff;
+    font-size: 80px;
+    text-decoration: none !important;
+}
+
+.txt-over:hover {
+    color: #c9c9c9 !important;
+}
+
+.dx {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 1000px;
+    margin: 10px 10px;
+    overflow: hidden !important;
+}
+
+@media screen and (max-width: 1500px) {
+    .dx {
+        width: 100%;
+    }
+}
+
+.flex-box {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0;
+    margin-bottom: 30px;
+    display: flex;
+}
+
+#B1 {
+    margin: 0px 20px;
+}
+
+#special {
+    visibility: hidden;
+    margin-bottom: 20px;
+}
+
+.hgallery {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pics {
+    height: 700px !important;
+    width: 1400px !important;
+}

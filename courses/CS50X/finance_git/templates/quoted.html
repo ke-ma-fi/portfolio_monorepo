@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">
+                    stock
+                </th>
+                <th scope="col">
+                    price
+                </th>
+            </tr>
+        </thead>
+        <tr>
+            <td>
+                {{stock_data.symbol}}
+            </td>
+            <td>
+               {{stock_data.price | usd }}
+            </td>
+        </tr>
+    </table>
+{% endblock %}

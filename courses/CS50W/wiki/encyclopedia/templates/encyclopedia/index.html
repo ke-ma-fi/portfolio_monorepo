@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <h1>All Pages</h1>
+    <div style="width: 400px;">
+        <ul style="list-style: none; padding: 0;">
+            {% for entry in entries %}
+                <li style="display: flex; justify-content: space-between; align-items: center;">
+                    <a href="{% url 'wiki' title=entry %}">{{ entry }}</a>
+                    <span>
+                        <a href="{% url 'edit' title=entry operation='edit' %}" style="margin-right: 10px;">edit</a>
+                        <a href="{% url 'edit' title=entry operation='delete' %}">delete</a>
+                    </span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

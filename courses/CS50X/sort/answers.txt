@@ -1,0 +1,11 @@
+sort1 uses: Bubble Sort
+
+How do you know?: random50k:5,8s / reversed50k:5,4s / sorted50k: 0,5s --> lower way faster than upper --> notvthe fastest --> has to be bubble sort
+
+sort2 uses: Merge Sort
+
+How do you know?: random50k: 0,5s / reversed50k: 0,8s / sorted50k: 0,4s --> clearly the fastest --> hast to be merge sort
+
+sort3 uses: Selection Sort
+
+How do you know?: random50k: 2,1s / reversed50k: 2,5s / sorted50k: 2,3s --> upper and lower the same, not the fastest --> must be selection sort

@@ -1,0 +1,70 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Listing Details</h2>
+    <h4>{{ listing.title }}</h4>
+    {% if request.user.is_authenticated %}
+        {% if watched %}
+        <div class="watched">watched</div><br>
+        <form action="{% url 'watch' %}" method="POST">
+            {%csrf_token%}
+            <input type="hidden" name="id" value="{{ listing.id }}">
+            <input type="hidden" name="action" value="delete">
+            <input type="submit" value="Unwatch">
+        </form><br>
+        {% else %}
+        <form action="{% url 'watch' %}" method="POST">
+            {% csrf_token %}
+            <input name="id" type="hidden" value="{{ listing.id }}">
+            <input type="hidden" name="action" value="add">
+            <input type="submit" value="Watch">
+        </form><br>
+        {% endif %}
+        {% if listing.seller == request.user and listing.state %}
+        <form action="{% url 'close' %}" method="POST">
+            {% csrf_token %}
+            <input name="id" type="hidden" value="{{ listing.id }}">
+            <input type="submit" value="Close Listing">
+        </form><br>
+        {% endif %}
+    {% endif %}
+    {% if highestbidder == request.user and not listing.state %}
+    <h4>You won this auction!</h4>
+    {% endif %}
+    {% if highestbidder == request.user and listing.state %} <h4>You are the highest Bidder, greate job! </h4> <br> {% endif %}
+    {% if listing.image %}
+        <img style="width: 300px" src="{{ listing.image |safe }}"><br>
+    {% endif %}
+    <div class="description">{{ listing.description }}</div>
+    <div class="price">{{ listing.formatted_price }}</div>
+    {% if request.user.is_authenticated and listing.state %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ BiddingForm }}
+            <input type="submit" value="Bid">
+        </form>
+        <br>
+    {% endif %}
+    <h4>Details</h4>
+    <div class="details">
+        Category: {{ listing.category }} <br>
+        Current Bids: {{ bidcount }} <br>
+        {% if not listing.state %} {{ highestbidder }} won the Auction! <br> {% endif %}
+        Listed by: {{ listing.seller}} <br>
+        Starting Price: {{ listing.starting_bid}} <br>
+        Listing State: {% if listing.state %} Active {% else %} Closed {% endif %}
+    </div>
+    <br><br>
+    {% if request.user.is_authenticated %}
+    <form action="{% url 'comment' %}" method="POST">
+        {% csrf_token%}
+        {{ CommentForm }}
+        <input type="hidden" name="id" value="{{ listing.id }}">
+        <input type="submit" value="comment">
+    </form><br><br>
+    {% endif %}
+    <h4>What users say:</h4>
+    {% for comment in comments %}
+    <div class="comment">{{comment.user}} wrote: {{ comment.comment }}</div><br>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,14 @@
+:root {
+  /* Override Payload Admin Primary Color to Brand Red */
+  --primary-500: #E01035;
+  --primary-600: #C00E2D; /* Darker for hover */
+  --primary-700: #A00B25;
+  
+  /* Ensure text on primary is white */
+  --primary-text: #FFFFFF;
+}
+
+[data-theme='dark'] {
+  --primary-500: #E01035;
+  --primary-600: #C00E2D;
+}
