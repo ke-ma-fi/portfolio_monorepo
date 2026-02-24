@@ -77,7 +77,7 @@ class TaskManager implements ITaskManager {
   }
 
   toggle(id: string): boolean {
-    let task = this.tasks.find((t) => t.id == id);
+    let task = this.tasks.find((t) => t.id === id);
     if (task) {
       task.state = !task.state;
       return true;
@@ -121,7 +121,7 @@ class TaskManager implements ITaskManager {
   }
 
   show(id: string): Task | undefined {
-    const task = this.tasks.find((t) => t.id == id);
+    const task = this.tasks.find((t) => t.id === id);
     if (!task) {
       return undefined;
     }
@@ -233,7 +233,11 @@ while (true) {
       console.log(
         "Filter by category (work, personal, coding) or press Enter to skip:",
       );
-      const filterCategory = prompt(">");
+      let filterCategory = prompt(">");
+      if (filterCategory && !categories.includes(filterCategory)) {
+        console.log("Invalid category filter. Ignoring.");
+        filterCategory = null;
+      }
       console.log("Filter by priority (1-5) or press Enter to skip:");
       const filterPriorityInput = prompt(">");
       let filterPriority: Priority | undefined;
@@ -264,7 +268,7 @@ while (true) {
       });
       filteredTasks.forEach((t) => {
         console.log(
-          `${t.id}: ${t.title} [${t.category}] (Priority: ${t.priority}) - ${t.state ? "open" : "closed"}`,
+          `${t.id}: ${t.title} [${t.category}] (Priority: ${t.priority})- ${t.notes.length} notes - ${t.state ? "open" : "closed"}`,
         );
       });
       break;
