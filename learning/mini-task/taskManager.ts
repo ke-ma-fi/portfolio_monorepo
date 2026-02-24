@@ -3,6 +3,7 @@ const priorities = [1, 2, 3, 4, 5];
 
 type Category = (typeof categories)[number];
 type Priority = (typeof priorities)[number];
+type Filter = { category?: Category; priority?: Priority; state?: boolean };
 
 interface Task {
   id: string;
@@ -13,12 +14,21 @@ interface Task {
   notes: string[];
 }
 
-class TaskManager {
+interface ITaskManager {
+  loadFile(): Promise<void>;
+  writeFile(): Promise<void>;
+  add(title: string, category: Category, priority: Priority): void;
+  toggle(id: string, state: boolean): void;
+  list({ category, priority, state }: Filter): Task[];
+  show(id: string): Task | undefined;
+}
+
+class TaskManager implements ITaskManager {
   private tasks: Task[] = [];
   private activeIds: Set<string> = new Set();
   private readonly PATH = "./tasks.json";
 
-  async loadFile() {
+  async loadFile(): Promise<void> {
     let file = Bun.file(this.PATH);
 
     if (await file.exists()) {
@@ -33,7 +43,7 @@ class TaskManager {
     }
   }
 
-  async writeFile() {
+  async writeFile(): Promise<void> {
     const data = JSON.stringify(this.tasks);
     await Bun.write(this.PATH, data);
   }
@@ -48,7 +58,7 @@ class TaskManager {
     }
   }
 
-  add(title: string, category: Category, priority: Priority) {
+  add(title: string, category: Category, priority: Priority): void {
     const newTask: Task = {
       id: this.getNewId(),
       title,
@@ -61,8 +71,29 @@ class TaskManager {
     this.tasks.push(newTask);
   }
 
-  toggle(id: string, state: boolean) {
-    const index = this.tasks.findIndex((t) => t.id == id);
+  toggle(id: string, state: boolean): void {
+    let task: Task = this.tasks.find((t) => t.id == id)!;
+    task ? (task.state = state) : console.log("This Task ID does not exist.");
+  }
+
+  list({ category, priority, state }: Filter): Task[] {
+    const tasks = this.tasks.filter((t) => {
+      //Define matching and set the match-Gate to true when no input is provided
+      const matchCategory = !category || t.category === category;
+      const matchPriority = priority === undefined || t.priority === priority;
+      const matchState = state === undefined || t.state === state;
+      //return everything that passed the matching gate
+      return matchCategory && matchPriority && matchState;
+    });
+    return tasks;
+  }
+
+  show(id: string): Task | undefined {
+    const task = this.tasks.find((t) => t.id == id);
+    if (!task) {
+      return undefined;
+    }
+    return task;
   }
 }
 
