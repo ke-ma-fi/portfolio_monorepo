@@ -4,6 +4,7 @@ const priorities = [1, 2, 3, 4, 5];
 type Category = (typeof categories)[number];
 type Priority = (typeof priorities)[number];
 type Filter = { category?: Category; priority?: Priority; state?: boolean };
+type Load = { category: Category; load: number };
 
 interface Task {
   id: string;
@@ -18,7 +19,9 @@ interface ITaskManager {
   loadFile(): Promise<void>;
   writeFile(): Promise<void>;
   add(title: string, category: Category, priority: Priority): void;
-  toggle(id: string, state: boolean): void;
+  toggle(id: string): boolean;
+  note(id: string, note: string): boolean;
+  focus(): Load[];
   list({ category, priority, state }: Filter): Task[];
   show(id: string): Task | undefined;
 }
@@ -38,7 +41,6 @@ class TaskManager implements ITaskManager {
       });
     } else {
       console.log("File not found. Initializing new task list.");
-      this.tasks = [];
       await Bun.write(this.PATH, JSON.stringify(this.tasks));
     }
   }
@@ -67,13 +69,39 @@ class TaskManager implements ITaskManager {
       state: true,
       notes: [],
     };
-
     this.tasks.push(newTask);
   }
 
-  toggle(id: string, state: boolean): void {
-    let task: Task = this.tasks.find((t) => t.id == id)!;
-    task ? (task.state = state) : console.log("This Task ID does not exist.");
+  toggle(id: string): boolean {
+    let task = this.tasks.find((t) => t.id == id);
+    if (task) {
+      task.state = !task.state;
+      return true;
+    }
+    console.log("This Task ID does not exist.");
+    return false;
+  }
+
+  note(id: string, note: string): boolean {
+    let task = this.tasks.find((t) => t.id == id);
+    if (task) {
+      task.notes.push(note);
+      return true;
+    }
+    console.log("This Task ID does not exist.");
+    return false;
+  }
+
+  focus(): Load[] {
+    const loadObject = categories.map((c) => {
+      const tasks = this.list({ category: c, state: true });
+      let loadCount = 0;
+      tasks.forEach((t) => {
+        loadCount += t.priority;
+      });
+      return { category: c, load: loadCount };
+    });
+    return loadObject;
   }
 
   list({ category, priority, state }: Filter): Task[] {
@@ -104,10 +132,11 @@ CLI __________________________________________________
 const tm = new TaskManager();
 await tm.loadFile();
 
-console.log("Welcome to the Task Manager CLI!");
+console.log(
+  "Welcome to the Task Manager CLI! Type 'help' for available commands.",
+);
 
 while (true) {
-  console.log("Available commands: 1 add task, 2 toggle task, 3 exit");
   const input = prompt(">");
   if (!input) continue;
 
@@ -154,12 +183,139 @@ while (true) {
       tm.add(newTask.title!, newTask.category!, newTask.priority!);
       break;
 
-    // handle exit case
+    // handle toggle case
+    case "2":
+    case "toggle":
+      console.log("Task ID:");
+      const toggleId = prompt(">");
+      if (!toggleId) {
+        console.log("Task ID is required. Try again!");
+        continue;
+      }
+      tm.toggle(toggleId);
+      break;
+
+    // handle note case
     case "3":
+    case "note":
+      console.log("Task ID:");
+      const noteId = prompt(">");
+      if (!noteId) {
+        console.log("Task ID is required. Try again!");
+        continue;
+      }
+      console.log("Note:");
+      const note = prompt(">");
+      if (!note) {
+        console.log("Note is required. Try again!");
+        continue;
+      }
+      tm.note(noteId, note);
+      break;
+
+    // handle focus case
+    case "4":
+    case "focus":
+      const load = tm.focus();
+      load.forEach((l) => {
+        console.log(`${l.category}: ${l.load}`);
+      });
+      break;
+
+    // handle list case
+    case "5":
+    case "list":
+      console.log(
+        "Filter by category (work, personal, coding) or press Enter to skip:",
+      );
+      const filterCategory = prompt(">");
+      console.log("Filter by priority (1-5) or press Enter to skip:");
+      const filterPriorityInput = prompt(">");
+      let filterPriority: Priority | undefined;
+      if (filterPriorityInput) {
+        const parsedPriority = parseInt(filterPriorityInput);
+        if (priorities.includes(parsedPriority)) {
+          filterPriority = parsedPriority;
+        } else {
+          console.log("Invalid priority filter. Ignoring.");
+        }
+      }
+      console.log("Filter by state (open/closed) or press Enter to skip:");
+      const filterStateInput = prompt(">");
+      let filterState: boolean | undefined;
+      if (filterStateInput) {
+        if (filterStateInput.toLowerCase() === "open") {
+          filterState = true;
+        } else if (filterStateInput.toLowerCase() === "closed") {
+          filterState = false;
+        } else {
+          console.log("Invalid state filter. Ignoring.");
+        }
+      }
+      const filteredTasks = tm.list({
+        category: filterCategory as Category,
+        priority: filterPriority,
+        state: filterState,
+      });
+      filteredTasks.forEach((t) => {
+        console.log(
+          `${t.id}: ${t.title} [${t.category}] (Priority: ${t.priority}) - ${t.state ? "Open" : "Closed"}`,
+        );
+      });
+      break;
+
+    // handle show case
+    case "6":
+    case "show":
+      console.log("Task ID:");
+      const showId = prompt(">");
+      if (!showId) {
+        console.log("Task ID is required. Try again!");
+        continue;
+      }
+      const task = tm.show(showId);
+      if (task) {
+        console.log(`ID: ${task.id}
+Title: ${task.title}
+Category: ${task.category}
+Priority: ${task.priority}
+State: ${task.state ? "Open" : "Closed"}
+Notes:
+${task.notes.length > 0 ? task.notes.map((n, i) => `  ${i + 1}. ${n}`).join("\n") : "  No notes."}`);
+      } else {
+        console.log("Task not found.");
+      }
+      break;
+
+    // handle save case
+    case "8":
+    case "save":
+      await tm.writeFile();
+      console.log("Tasks saved successfully.");
+      break;
+
+    // handle exit case
+    case "9":
     case "exit":
       await tm.writeFile();
       console.log("Goodbye!");
       process.exit(0);
+
+    // handle help case
+    case "help":
+      console.log(`
+Available commands:
+1. add - Add a new task
+2. toggle - Toggle task state (complete/incomplete)
+3. note - Add a note to a task
+4. focus - Show load by category
+5. list - List tasks with optional filters
+6. show - Show details of a specific task
+7. help - Show this help message
+8. save - Save tasks to file
+9. exit - Save and exit the application
+      `);
+      break;
 
     // handle default
     default:
