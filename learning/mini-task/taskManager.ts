@@ -1,3 +1,7 @@
+/*
+(The current implementation is very basic and can be improved with better input handling, error checking, and a more user-friendly interface. The focus here is on demonstrating the functionality of the TaskManager class. Also the tasks only get saved permantly when exiting or saving manually. So if the programm crashes or is closed by strg+c, all unsaved changes will be lost. This can be improved by running the writeFile function after every method that changes the state of tasks.)
+*/
+
 const categories = ["work", "personal", "coding"];
 const priorities = [1, 2, 3, 4, 5];
 
@@ -137,6 +141,7 @@ console.log(
 );
 
 while (true) {
+  console.log("\nEnter a command:");
   const input = prompt(">");
   if (!input) continue;
 
@@ -259,7 +264,7 @@ while (true) {
       });
       filteredTasks.forEach((t) => {
         console.log(
-          `${t.id}: ${t.title} [${t.category}] (Priority: ${t.priority}) - ${t.state ? "Open" : "Closed"}`,
+          `${t.id}: ${t.title} [${t.category}] (Priority: ${t.priority}) - ${t.state ? "open" : "closed"}`,
         );
       });
       break;
