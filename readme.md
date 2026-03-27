@@ -30,7 +30,19 @@ A modern voucher/gift card store built with Next.js and Payload CMS that priorit
   - **Service Layer Pattern**: Implemented a strict service layer to prevent "Business Logic Leakage" into UI components or isolated webhooks. All critical operations (e.g., fulfilling orders) flow through centralized, stateless services. See [`src/services/orders.ts`](projects/gutscheineland/src/services/orders.ts).
   - **Headless CMS Integration**: Built on top of **Payload CMS** (acting as an application framework) with complex hooks for order fulfillment and Stripe payment processing.
 
-### 2. PiSignage Automation (Python)
+### 2. RAG Chat MVP (TypeScript / Next.js / Supabase)
+
+📍 _Location: [`projects/MVP_RAG`](projects/MVP_RAG)_
+
+A minimal, end-to-end Retrieval-Augmented Generation (RAG) system built as a recruiting challenge. Users ask questions through a streaming chat interface, and answers are grounded in a per-workspace knowledge base stored in Supabase with pgvector.
+
+- **Architectural Highlights**:
+  - **No framework overhead**: The entire RAG pipeline is ~30 lines of code — no LangChain or LlamaIndex. Raw Supabase RPC + Vercel AI SDK only.
+  - **Multi-tenant by design**: Every document insert and every vector search is scoped to a `workspace_id` enforced at the data layer, not just the UI.
+  - **Streaming**: LLM responses are streamed token-by-token to the frontend via `streamText` from the Vercel AI SDK. See [`src/app/api/chat/route.ts`](projects/MVP_RAG/src/app/api/chat/route.ts).
+  - **Factory client pattern**: A `createServerClient()` factory instead of a module-level singleton prevents state leaks between serverless invocations.
+
+### 3. PiSignage Automation (Python)
 
 📍 _Location: [`projects/pisignage`](projects/pisignage)_
 

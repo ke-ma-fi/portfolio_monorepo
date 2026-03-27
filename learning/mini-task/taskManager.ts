@@ -54,7 +54,10 @@ class TaskManager implements ITaskManager {
     await Bun.write(this.PATH, data);
   }
 
-  private getNewId(): string {
+  getNewId(): string {
+    if (this.activeIds.size > 1000) {
+      throw new Error("Maximum number of tasks reached.");
+    }
     while (true) {
       const id = Math.random().toString(36).substring(4, 6);
       if (!this.activeIds.has(id)) {
@@ -325,6 +328,13 @@ Available commands:
 9. exit - Save and exit the application
       `);
       break;
+
+    case "test":
+      let count = 0;
+      while (true) {
+        count++;
+        console.log(`${count}: ${tm.getNewId()}`);
+      }
 
     // handle default
     default:

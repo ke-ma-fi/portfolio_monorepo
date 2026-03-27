@@ -1,0 +1,31 @@
+{
+  "name": "mvp-rag",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "pnpm run build:slides && pnpm run copy:slides && next build",
+    "build:slides": "cd slides && pnpm install && pnpm run build",
+    "copy:slides": "mkdir -p public/slides && cp -r slides/dist/. public/slides/",
+    "start": "next start",
+    "ingest": "tsx --env-file=.env.local scripts/ingest.ts"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^3.0.48",
+    "@ai-sdk/react": "^3.0.140",
+    "@supabase/supabase-js": "^2.100.0",
+    "ai": "^6.0.138",
+    "next": "^15.5.14",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
+    "@types/node": "^25.5.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "tailwindcss": "^4.2.2",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  }
+}

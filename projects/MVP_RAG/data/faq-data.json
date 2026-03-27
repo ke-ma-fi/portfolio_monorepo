@@ -1,0 +1,52 @@
+[
+  {
+    "workspace_id": "acme-hr",
+    "topic": "Annual Leave",
+    "content": "Acme HR: Employees are entitled to 20 days of paid annual leave per year. Leave must be requested at least 2 weeks in advance via the HR portal. Unused leave up to 5 days may be carried over to the next calendar year. Leave beyond the carry-over limit is forfeited at year end."
+  },
+  {
+    "workspace_id": "acme-hr",
+    "topic": "Performance Reviews",
+    "content": "Acme HR: Performance reviews are conducted twice per year, in June and December. Employees receive written feedback from their manager and set 3–5 goals for the next cycle. Ratings follow a 5-point scale: Exceptional, Exceeds Expectations, Meets Expectations, Developing, and Unsatisfactory. Compensation adjustments are tied to the December review."
+  },
+  {
+    "workspace_id": "acme-hr",
+    "topic": "Remote Work Policy",
+    "content": "Acme HR: Employees may work remotely up to 3 days per week. Core collaboration hours are 10 am–3 pm in the employee's local timezone. A remote work agreement must be signed with the employee's manager and renewed annually. Fully remote arrangements require VP-level approval."
+  },
+  {
+    "workspace_id": "acme-hr",
+    "topic": "Health Benefits",
+    "content": "Acme HR: Acme Corp offers medical, dental, and vision coverage for all full-time employees. Medical coverage includes a $500 annual deductible and 80/20 co-insurance after the deductible is met. Dental covers 100% of preventive care and 80% of basic restorative procedures. Open enrollment takes place each November and changes are effective January 1."
+  },
+  {
+    "workspace_id": "acme-hr",
+    "topic": "Onboarding Program",
+    "content": "Acme HR: New employees complete a structured 2-week onboarding program. Week 1 covers company culture, tool setup, security training, and compliance modules. Week 2 is team-specific, with a paired mentorship from a senior colleague. Every new hire is assigned an onboarding buddy for their first 90 days to help them integrate into the team."
+  },
+  {
+    "workspace_id": "acme-eng",
+    "topic": "API Rate Limits",
+    "content": "Acme Dev Platform: The REST API enforces rate limits of 1,000 requests per minute per API key on the Pro plan and 100 requests per minute on the Free plan. Rate limit status is exposed via response headers: X-RateLimit-Limit, X-RateLimit-Remaining, and X-RateLimit-Reset (Unix timestamp). Exceeding the limit returns HTTP 429 with a Retry-After header."
+  },
+  {
+    "workspace_id": "acme-eng",
+    "topic": "Authentication",
+    "content": "Acme Dev Platform: All API requests must be authenticated using API keys passed as Bearer tokens in the Authorization header (e.g., Authorization: Bearer <api_key>). API keys can be created in the Developer Dashboard under Settings > API Keys. Each key supports configurable permission scopes: read, write, and admin. Keys can be rotated or revoked at any time without changing the account."
+  },
+  {
+    "workspace_id": "acme-eng",
+    "topic": "Webhooks",
+    "content": "Acme Dev Platform: Webhooks allow your application to receive real-time event notifications via HTTP POST requests. Supported event types include resource.created, resource.updated, and resource.deleted. Each delivery includes an HMAC-SHA256 signature in the X-Acme-Signature header so you can verify authenticity. Failed deliveries are retried up to 5 times with exponential backoff."
+  },
+  {
+    "workspace_id": "acme-eng",
+    "topic": "Official SDKs",
+    "content": "Acme Dev Platform: Official client SDKs are available for Node.js, Python, Ruby, and Go. All SDKs are open source and hosted in the acme-corp GitHub organization. The Node.js SDK supports both CommonJS (require) and ESM (import) and is installable via npm install @acme/sdk or pnpm add @acme/sdk. Each SDK version is semantically versioned and pinned to a specific API version."
+  },
+  {
+    "workspace_id": "acme-eng",
+    "topic": "Environments",
+    "content": "Acme Dev Platform: Three isolated environments are available: production (api.acme.com), staging (staging-api.acme.com), and sandbox (sandbox-api.acme.com). The sandbox environment resets every 24 hours and does not incur billing charges — ideal for integration testing. Use separate API keys per environment; keys from one environment are not valid in another."
+  }
+]
